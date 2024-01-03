@@ -13,6 +13,11 @@ class Order(
     var status: OrderStatus,
     var id: Int
 ) {
+  def addItem(orderItem: OrderItem): Unit = {
+    items += orderItem
+    total += orderItem.taxedAmount
+    tax += orderItem.tax
+  }
   def approveOrder() = {
     if (status == OrderStatus.Shipped)
       throw new ShippedOrdersCannotBeChangedException

@@ -18,7 +18,7 @@ class OrderItem(
     val unitaryTaxedAmount = roundAt(2)(product.price + unitaryTax)
     taxedAmount =
       roundAt(2)(unitaryTaxedAmount * itemRequest.quantity)
-    val taxAmount = roundAt(2)(unitaryTax * itemRequest.quantity)
+     tax = roundAt(2)(unitaryTax * itemRequest.quantity)
   }
 
 

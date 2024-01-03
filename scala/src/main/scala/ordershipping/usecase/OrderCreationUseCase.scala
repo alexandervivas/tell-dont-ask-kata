@@ -37,14 +37,10 @@ class OrderCreationUseCase(
 
           val orderItem = new OrderItem(
             product = p,
-            quantity = itemRequest.quantity,
-            taxedAmount = taxedAmount,
-            tax = taxAmount
+            quantity = itemRequest.quantity
           )
-
-          order.items += orderItem
-          order.total += taxedAmount
-          order.tax += taxAmount
+          orderItem.computeTax(request)
+         order.addItem(orderItem)
         })
       }
     }
