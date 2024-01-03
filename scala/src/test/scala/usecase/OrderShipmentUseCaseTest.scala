@@ -2,12 +2,9 @@ package usecase
 
 import doubles.{TestOrderRepository, TestShipmentService}
 import ordershipping.domain.{Order, OrderStatus}
-import ordershipping.usecase.{
-  OrderCannotBeShippedException,
-  OrderCannotBeShippedTwiceException,
-  OrderShipmentRequest,
-  OrderShipmentUseCase
-}
+import ordershipping.exception.{OrderCannotBeShippedException, OrderCannotBeShippedTwiceException}
+import ordershipping.request.OrderShipmentRequest
+import ordershipping.usecase.OrderShipmentUseCase
 import org.scalatest.BeforeAndAfterEach
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers

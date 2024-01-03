@@ -1,7 +1,9 @@
 package ordershipping.usecase
 
 import ordershipping.domain.OrderStatus
+import ordershipping.exception.{OrderCannotBeShippedException, OrderCannotBeShippedTwiceException}
 import ordershipping.repository.OrderRepository
+import ordershipping.request.OrderShipmentRequest
 import ordershipping.service.ShipmentService
 
 class OrderShipmentUseCase(

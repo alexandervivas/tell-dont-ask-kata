@@ -1,7 +1,9 @@
 package ordershipping.usecase
 
 import ordershipping.domain.{Order, OrderItem, OrderStatus}
+import ordershipping.exception.UnknownProductException
 import ordershipping.repository.{OrderRepository, ProductCatalog}
+import ordershipping.request.SellItemsRequest
 
 import scala.collection.mutable
 
@@ -26,12 +28,12 @@ class OrderCreationUseCase(
         throw new UnknownProductException
       else {
         product.foreach(p => {
-          val unitaryTax =
-            roundAt(2)((p.price / 100) * p.category.taxPercentage)
-          val unitaryTaxedAmount = roundAt(2)(p.price + unitaryTax)
-          val taxedAmount =
-            roundAt(2)(unitaryTaxedAmount * itemRequest.quantity)
-          val taxAmount = roundAt(2)(unitaryTax * itemRequest.quantity)
+//          val unitaryTax =
+//            roundAt(2)((p.price / 100) * p.category.taxPercentage)
+//          val unitaryTaxedAmount = roundAt(2)(p.price + unitaryTax)
+//          val taxedAmount =
+//            roundAt(2)(unitaryTaxedAmount * itemRequest.quantity)
+//          val taxAmount = roundAt(2)(unitaryTax * itemRequest.quantity)
 
           val orderItem = new OrderItem(
             product = p,

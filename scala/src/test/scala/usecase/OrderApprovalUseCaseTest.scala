@@ -2,13 +2,9 @@ package usecase
 
 import doubles.TestOrderRepository
 import ordershipping.domain.{Order, OrderStatus}
-import ordershipping.usecase.{
-  ApprovedOrderCannotBeRejectedException,
-  OrderApprovalRequest,
-  OrderApprovalUseCase,
-  RejectedOrderCannotBeApprovedException,
-  ShippedOrdersCannotBeChangedException
-}
+import ordershipping.exception.{ApprovedOrderCannotBeRejectedException, RejectedOrderCannotBeApprovedException, ShippedOrdersCannotBeChangedException}
+import ordershipping.request.OrderApprovalRequest
+import ordershipping.usecase.OrderApprovalUseCase
 import org.scalatest.BeforeAndAfterEach
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers

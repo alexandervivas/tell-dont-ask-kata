@@ -2,12 +2,9 @@ package usecase
 
 import doubles.{InMemoryProductCatalog, TestOrderRepository}
 import ordershipping.domain.{Category, OrderStatus, Product}
-import ordershipping.usecase.{
-  OrderCreationUseCase,
-  SellItemRequest,
-  SellItemsRequest,
-  UnknownProductException
-}
+import ordershipping.exception.UnknownProductException
+import ordershipping.request.{SellItemRequest, SellItemsRequest}
+import ordershipping.usecase.OrderCreationUseCase
 import org.scalatest.BeforeAndAfterEach
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
