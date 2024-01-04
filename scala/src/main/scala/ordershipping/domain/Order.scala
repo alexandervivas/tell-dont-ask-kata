@@ -6,18 +6,20 @@ import ordershipping.exception.{ApprovedOrderCannotBeRejectedException, Rejected
 import scala.collection.mutable
 
 class Order(
-    var total: Double = 0,
     var currency: String = "",
-    var items: mutable.MutableList[OrderItem] = mutable.MutableList.empty,
-    var tax: Double = 0,
     var status: OrderStatus,
     var id: Int
 ) {
+  var total: Double = 0
+  var items: List[OrderItem] = List.empty
+  var tax: Double = 0
+
   def addItem(orderItem: OrderItem): Unit = {
     items += orderItem
     total += orderItem.taxedAmount
     tax += orderItem.tax
   }
+
   def approveOrder() = {
     if (status == OrderStatus.Shipped)
       throw new ShippedOrdersCannotBeChangedException
