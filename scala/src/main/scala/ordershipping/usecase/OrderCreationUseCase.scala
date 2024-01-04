@@ -13,10 +13,7 @@ class OrderCreationUseCase(
 ) {
   def run(request: SellItemsRequest): Unit = {
     val order = new Order(
-      total = 0d,
       currency = "EUR",
-      items = mutable.MutableList.empty,
-      tax = 0d,
       status = OrderStatus.Created,
       id = 1
     )
