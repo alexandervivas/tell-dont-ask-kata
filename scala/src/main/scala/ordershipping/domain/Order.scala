@@ -12,23 +12,23 @@ class Order(
 ) {
   var total: Double = 0
   var items: List[OrderItem] = List.empty
-  var tax: Double = 0
+
 
   def addItem(orderItem: OrderItem): Unit = {
     items += orderItem
     total += orderItem.taxedAmount
-    tax += orderItem.tax
   }
+  def computeTax(): Double = items.map(i => i.tax).sum
 
-  def approveOrder(approved: Boolean) = {
+  def approveOrder(approved: Boolean): Unit = {
     if (status == OrderStatus.Shipped)
       throw new ShippedOrdersCannotBeChangedException
-    if (approved && order.status == OrderStatus.Rejected)
+    if (approved && status == OrderStatus.Rejected)
       throw new RejectedOrderCannotBeApprovedException
-    if (!approved && order.status == OrderStatus.Approved)
+    if (!approved && status == OrderStatus.Approved)
       throw new ApprovedOrderCannotBeRejectedException
 
-    order.status =
-      if (request.approved) OrderStatus.Approved else OrderStatus.Rejected
+   status =
+      if (approved) OrderStatus.Approved else OrderStatus.Rejected
   }
 }
