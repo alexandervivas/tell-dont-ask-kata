@@ -5,20 +5,14 @@ import ordershipping.exception.{ApprovedOrderCannotBeRejectedException, Rejected
 
 import scala.collection.mutable
 
-class Order(
-    var currency: String = "",
-    var status: OrderStatus,
-    var id: Int
+case class Order(
+     currency: String = "",
+     status: OrderStatus,
+     id: Int,
+     orderItems:  List[OrderItem]
 ) {
   var total: Double = 0
-  var items: List[OrderItem] = List.empty
-
-
-  def addItem(orderItem: OrderItem): Unit = {
-    items += orderItem
-    total += orderItem.taxedAmount
-  }
-  def computeTax(): Double = items.map(i => i.tax).sum
+  val orderTax: Double = orderItems.map(i => i.tax).sum
 
   def approveOrder(approved: Boolean): Unit = {
     if (status == OrderStatus.Shipped)

@@ -39,8 +39,7 @@ class OrderCreationUseCase(
             product = p,
             quantity = itemRequest.quantity
           )
-          orderItem.computeTax(request)
-         order.addItem(orderItem)
+         //order.addItem(orderItem)
         })
       }
     }

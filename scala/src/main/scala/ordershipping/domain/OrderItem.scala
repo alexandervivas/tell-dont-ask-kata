@@ -3,23 +3,15 @@ package ordershipping.domain
 import ordershipping.request.SellItemRequest
 import ordershipping.utils.MathHelpers.roundAt
 
-
-class OrderItem(
-    val product: ordershipping.domain.Product,
-    var quantity: Int,
-    var taxedAmount: Double,
-    var tax: Double
+case class OrderItem(
+     product: ordershipping.domain.Product,
+     quantity: Int
 ) {
-
-  def computeTax(itemRequest:SellItemRequest): Unit = {
-
-    val unitaryTax =
+    private val unitaryTax =
       roundAt(2)((product.price / 100) * product.category.taxPercentage)
-    val unitaryTaxedAmount = roundAt(2)(product.price + unitaryTax)
-    taxedAmount =
-      roundAt(2)(unitaryTaxedAmount * itemRequest.quantity)
-     tax = roundAt(2)(unitaryTax * itemRequest.quantity)
-  }
-
+    private val unitaryTaxedAmount = roundAt(2)(product.price + unitaryTax)
+    val taxedAmount: Double =
+      roundAt(2)(unitaryTaxedAmount * quantity)
+     val tax: Double = roundAt(2)(unitaryTax * quantity)
 
 }
