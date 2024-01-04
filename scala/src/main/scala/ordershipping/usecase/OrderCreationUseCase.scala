@@ -24,9 +24,9 @@ class OrderCreationUseCase(
       if (product.isEmpty)
         throw new UnknownProductException
       else {
-        val orderItems = product.map { p =>
+        val orderItems = product.map(p => OrderItem(p, itemRequest.quantity))
 
-        }
+
         product.foreach(p => {
 //          val unitaryTax =
 //            roundAt(2)((p.price / 100) * p.category.taxPercentage)

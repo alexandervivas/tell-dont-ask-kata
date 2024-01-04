@@ -1,6 +1,5 @@
 package ordershipping.domain
 
-import ordershipping.request.SellItemRequest
 import ordershipping.utils.MathHelpers.roundAt
 
 case class OrderItem(

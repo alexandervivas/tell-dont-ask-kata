@@ -11,7 +11,7 @@ case class Order(
      id: Int,
      orderItems:  List[OrderItem]
 ) {
-  var total: Double = 0
+  val total: Double = orderItems.map(i => i.taxedAmount).sum
   val orderTax: Double = orderItems.map(i => i.tax).sum
 
   def approveOrder(approved: Boolean): Unit = {
