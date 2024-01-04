@@ -10,7 +10,7 @@ class OrderApprovalUseCase(val orderRepository: OrderRepository) {
     orderRepository
       .getById(request.orderId)
       .foreach(order => {
-        if (order.status == OrderStatus.Shipped)
+        /*if (order.status == OrderStatus.Shipped)
           throw new ShippedOrdersCannotBeChangedException
         if (request.approved && order.status == OrderStatus.Rejected)
           throw new RejectedOrderCannotBeApprovedException
@@ -18,7 +18,8 @@ class OrderApprovalUseCase(val orderRepository: OrderRepository) {
           throw new ApprovedOrderCannotBeRejectedException
 
         order.status =
-          if (request.approved) OrderStatus.Approved else OrderStatus.Rejected
+          if (request.approved) OrderStatus.Approved else OrderStatus.Rejected*/
+        order.approveOrder(request.approved)
         orderRepository.save(order)
       })
   }

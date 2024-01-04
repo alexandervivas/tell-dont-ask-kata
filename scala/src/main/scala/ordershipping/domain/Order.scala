@@ -20,12 +20,12 @@ class Order(
     tax += orderItem.tax
   }
 
-  def approveOrder() = {
+  def approveOrder(approved: Boolean) = {
     if (status == OrderStatus.Shipped)
       throw new ShippedOrdersCannotBeChangedException
-    if (request.approved && order.status == OrderStatus.Rejected)
+    if (approved && order.status == OrderStatus.Rejected)
       throw new RejectedOrderCannotBeApprovedException
-    if (!request.approved && order.status == OrderStatus.Approved)
+    if (!approved && order.status == OrderStatus.Approved)
       throw new ApprovedOrderCannotBeRejectedException
 
     order.status =
