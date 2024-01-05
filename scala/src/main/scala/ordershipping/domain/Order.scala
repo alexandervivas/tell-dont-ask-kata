@@ -14,7 +14,7 @@ case class Order(
   val total: Double = orderItems.map(i => i.taxedAmount).sum
   val orderTax: Double = orderItems.map(i => i.tax).sum
 
-  def approveOrder(approved: Boolean): Unit = {
+  def approveOrder(approved: Boolean): Order = {
     if (status == OrderStatus.Shipped)
       throw new ShippedOrdersCannotBeChangedException
     if (approved && status == OrderStatus.Rejected)
@@ -22,7 +22,6 @@ case class Order(
     if (!approved && status == OrderStatus.Approved)
       throw new ApprovedOrderCannotBeRejectedException
 
-   status =
-      if (approved) OrderStatus.Approved else OrderStatus.Rejected
+    copy(status = if (approved) OrderStatus.Approved else OrderStatus.Rejected)
   }
 }

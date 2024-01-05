@@ -5,20 +5,15 @@ import ordershipping.exception.UnknownProductException
 import ordershipping.repository.{OrderRepository, ProductCatalog}
 import ordershipping.request.SellItemsRequest
 
-import scala.collection.mutable
-
 class OrderCreationUseCase(
     val orderRepository: OrderRepository,
     val productCatalog: ProductCatalog
 ) {
   def run(request: SellItemsRequest): Unit = {
-
-    val orderItems = request.requests.flatMap {  itemRequest =>
+    val orderItems = request.requests.map { itemRequest =>
       val product = productCatalog.getByName(itemRequest.productName)
-      if (product.isEmpty)
-        throw new UnknownProductException
-      else {
-        product.map(p => OrderItem(p, itemRequest.quantity))
+      product.fold(throw new UnknownProductException) { product =>
+        OrderItem(product, itemRequest.quantity)
       }
     }
 
