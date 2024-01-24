@@ -22,7 +22,7 @@ class OrderApprovalUseCaseTest
   }
 
   "order approval use case" should "approved existing order" in {
-    val initialOrder = new Order(status = OrderStatus.Created, id = 1)
+    val initialOrder = Order("", status = OrderStatus.Created, id = 1, List.empty)
     orderRepository.addOrder(initialOrder)
     val request = OrderApprovalRequest(orderId = 1, approved = true)
 
@@ -33,7 +33,7 @@ class OrderApprovalUseCaseTest
   }
 
   "order approval use case" should "rejected existing order" in {
-    val initialOrder = new Order(status = OrderStatus.Created, id = 1)
+    val initialOrder = Order("", status = OrderStatus.Created, id = 1, List.empty)
     orderRepository.addOrder(initialOrder)
     val request = OrderApprovalRequest(orderId = 1, approved = false)
 
@@ -44,7 +44,7 @@ class OrderApprovalUseCaseTest
   }
 
   "order approval use case" should "can not approve rejected order" in {
-    val initialOrder = new Order(status = OrderStatus.Rejected, id = 1)
+    val initialOrder = Order("", status = OrderStatus.Rejected, id = 1, List.empty)
     orderRepository.addOrder(initialOrder)
     val request = OrderApprovalRequest(orderId = 1, approved = true)
 
@@ -55,7 +55,7 @@ class OrderApprovalUseCaseTest
   }
 
   "order approval use case" should "can not reject approved order" in {
-    val initialOrder = new Order(status = OrderStatus.Approved, id = 1)
+    val initialOrder = Order("", status = OrderStatus.Approved, id = 1, List.empty)
     orderRepository.addOrder(initialOrder)
     val request = OrderApprovalRequest(orderId = 1, approved = false)
 
@@ -66,7 +66,7 @@ class OrderApprovalUseCaseTest
   }
 
   "order approval use case" should "can not reject shipped order" in {
-    val initialOrder = new Order(status = OrderStatus.Shipped, id = 1)
+    val initialOrder = Order("", status = OrderStatus.Shipped, id = 1, List.empty)
     orderRepository.addOrder(initialOrder)
     val request = OrderApprovalRequest(orderId = 1, approved = false)
 

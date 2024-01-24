@@ -20,7 +20,7 @@ case class OrderCreationUseCase(
     val order = Order(
       currency = "EUR",
       status = OrderStatus.Created,
-      id = 1,
+      id = 1, // TODO: Get last order & increase id by 1
       items = orderItems
     )
     orderRepository.save(order)

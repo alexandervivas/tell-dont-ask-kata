@@ -1,7 +1,6 @@
 package ordershipping.domain
 
-import ordershipping.domain.OrderStatus.OrderStatus
-import ordershipping.exception.{ApprovedOrderCannotBeRejectedException, OrderCannotBeShippedException, OrderCannotBeShippedTwiceException, RejectedOrderCannotBeApprovedException, ShippedOrdersCannotBeChangedException}
+import ordershipping.exception._
 
 case class Order(
                   currency: String = "",

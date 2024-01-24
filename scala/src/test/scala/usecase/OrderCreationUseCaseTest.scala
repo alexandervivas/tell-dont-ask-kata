@@ -13,11 +13,11 @@ class OrderCreationUseCaseTest
     extends AnyFlatSpec
     with Matchers
     with BeforeAndAfterEach {
-  private val food = new Category(name = "food", taxPercentage = 10)
+  private val food = Category(name = "food", taxPercentage = 10)
   private val productCatalog = new InMemoryProductCatalog(
     List(
-      new Product(name = "salad", price = 3.56, category = food),
-      new Product(name = "tomato", price = 4.65, category = food)
+      Product(name = "salad", price = 3.56, category = food),
+      Product(name = "tomato", price = 4.65, category = food)
     )
   )
   private var orderRepository: TestOrderRepository = _
@@ -25,7 +25,7 @@ class OrderCreationUseCaseTest
 
   override def beforeEach(): Unit = {
     orderRepository = new TestOrderRepository()
-    useCase = new OrderCreationUseCase(
+    useCase = OrderCreationUseCase(
       orderRepository = orderRepository,
       productCatalog = productCatalog
     )
