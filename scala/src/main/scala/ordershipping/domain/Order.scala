@@ -26,4 +26,8 @@ case class Order(
       throw new ApprovedOrderCannotBeRejectedException
     copy(status = if (approved) OrderStatus.Approved else OrderStatus.Rejected)
   }
+
+  def shipOrder(): Order = {
+    copy(status = OrderStatus.Shipped)
+  }
 }

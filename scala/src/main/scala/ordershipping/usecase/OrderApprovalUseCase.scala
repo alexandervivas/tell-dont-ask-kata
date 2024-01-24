@@ -1,7 +1,5 @@
 package ordershipping.usecase
 
-import ordershipping.domain.OrderStatus
-import ordershipping.exception.{ApprovedOrderCannotBeRejectedException, RejectedOrderCannotBeApprovedException, ShippedOrdersCannotBeChangedException}
 import ordershipping.repository.OrderRepository
 import ordershipping.request.OrderApprovalRequest
 
