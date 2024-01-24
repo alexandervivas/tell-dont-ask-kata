@@ -5,7 +5,7 @@ import ordershipping.exception.{ApprovedOrderCannotBeRejectedException, Rejected
 import ordershipping.repository.OrderRepository
 import ordershipping.request.OrderApprovalRequest
 
-class OrderApprovalUseCase(val orderRepository: OrderRepository) {
+case class OrderApprovalUseCase(orderRepository: OrderRepository) {
   def run(request: OrderApprovalRequest): Unit = {
     orderRepository
       .getById(request.orderId)

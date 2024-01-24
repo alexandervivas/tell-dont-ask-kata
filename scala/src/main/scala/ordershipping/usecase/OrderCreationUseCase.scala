@@ -5,9 +5,9 @@ import ordershipping.exception.UnknownProductException
 import ordershipping.repository.{OrderRepository, ProductCatalog}
 import ordershipping.request.SellItemsRequest
 
-class OrderCreationUseCase(
-    val orderRepository: OrderRepository,
-    val productCatalog: ProductCatalog
+case class OrderCreationUseCase(
+     orderRepository: OrderRepository,
+     productCatalog: ProductCatalog
 ) {
   def run(request: SellItemsRequest): Unit = {
     val orderItems = request.requests.map { itemRequest =>

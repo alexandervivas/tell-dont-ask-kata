@@ -6,9 +6,9 @@ import ordershipping.repository.OrderRepository
 import ordershipping.request.OrderShipmentRequest
 import ordershipping.service.ShipmentService
 
-class OrderShipmentUseCase(
-    val orderRepository: OrderRepository,
-    val shipmentService: ShipmentService
+case class OrderShipmentUseCase(
+     orderRepository: OrderRepository,
+     shipmentService: ShipmentService
 ) {
   def run(request: OrderShipmentRequest): Unit = {
     orderRepository
