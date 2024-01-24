@@ -3,16 +3,14 @@ package ordershipping.domain
 import ordershipping.domain.OrderStatus.OrderStatus
 import ordershipping.exception.{ApprovedOrderCannotBeRejectedException, OrderCannotBeShippedException, OrderCannotBeShippedTwiceException, RejectedOrderCannotBeApprovedException, ShippedOrdersCannotBeChangedException}
 
-import scala.collection.mutable
-
 case class Order(
-     currency: String = "",
-     status: OrderStatus,
-id: Int,
-orderItems:  List[OrderItem]
+                  currency: String = "",
+                  status: OrderStatus,
+                  id: Int,
+                  items:  List[OrderItem]
 ) {
-  val total: Double = orderItems.map(i => i.taxedAmount).sum
-  val orderTax: Double = orderItems.map(i => i.tax).sum
+  val total: Double = items.map(i => i.taxedAmount).sum
+  val tax: Double = items.map(i => i.tax).sum
   private def ensureCanBeApproved(approved: Boolean): Unit = {
     if (status == OrderStatus.Shipped)
       throw new ShippedOrdersCannotBeChangedException

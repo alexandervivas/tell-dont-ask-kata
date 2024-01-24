@@ -1,6 +1,9 @@
 package ordershipping.domain
-//TODO transform into ADT
-object OrderStatus extends Enumeration {
-  type OrderStatus = Value
-  val Approved, Rejected, Shipped, Created = Value
+
+sealed trait OrderStatus
+object OrderStatus {
+  final case object Approved extends OrderStatus
+  final case object Rejected extends OrderStatus
+  final case object Shipped extends OrderStatus
+  final case object Created extends OrderStatus
 }

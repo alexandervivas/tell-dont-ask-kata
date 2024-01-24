@@ -21,7 +21,7 @@ case class OrderCreationUseCase(
       currency = "EUR",
       status = OrderStatus.Created,
       id = 1,
-      orderItems = orderItems
+      items = orderItems
     )
     orderRepository.save(order)
   }
