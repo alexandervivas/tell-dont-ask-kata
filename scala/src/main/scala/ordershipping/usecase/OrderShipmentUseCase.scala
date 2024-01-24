@@ -14,17 +14,11 @@ case class OrderShipmentUseCase(
     orderRepository
       .getById(request.orderId)
       .foreach(order => {
-        if (
-          order.status == OrderStatus.Created ||
-          order.status == OrderStatus.Rejected
-        ) throw new OrderCannotBeShippedException
 
-        if (order.status == OrderStatus.Shipped)
-          throw new OrderCannotBeShippedTwiceException
 
         shipmentService.ship(order)
-        order.status = OrderStatus.Shipped
-        orderRepository.save(order)
+        //order.status = OrderStatus.Shipped
+        orderRepository.save(order.shipOrder())
       })
   }
 }

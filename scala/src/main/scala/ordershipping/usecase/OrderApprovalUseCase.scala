@@ -8,7 +8,7 @@ case class OrderApprovalUseCase(orderRepository: OrderRepository) {
     orderRepository
       .getById(request.orderId)
       .foreach(order => {
-        orderRepository.save(order.approveOrder(request.approved))
+        orderRepository.save(order.approve(request.approved))
       })
   }
 }
