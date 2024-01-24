@@ -14,11 +14,9 @@ case class OrderShipmentUseCase(
     orderRepository
       .getById(request.orderId)
       .foreach(order => {
-
-
+        order.ensureCanBeShipped()
         shipmentService.ship(order)
-        //order.status = OrderStatus.Shipped
-        orderRepository.save(order.shipOrder())
+        orderRepository.save(order.markAsShipped())
       })
   }
 }

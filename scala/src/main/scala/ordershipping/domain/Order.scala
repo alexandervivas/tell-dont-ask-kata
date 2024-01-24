@@ -21,7 +21,7 @@ orderItems:  List[OrderItem]
     if (!approved && status == OrderStatus.Approved)
       throw new ApprovedOrderCannotBeRejectedException
   }
-  private def ensureCanBeShipped(): Unit = {
+  def ensureCanBeShipped(): Unit = {
     if (
       status == OrderStatus.Created ||
         status == OrderStatus.Rejected
@@ -39,10 +39,7 @@ orderItems:  List[OrderItem]
     copy(status = if (approved) OrderStatus.Approved else OrderStatus.Rejected)
   }
 
-
-  def shipOrder(): Order = {
-    ensureCanBeShipped()
+  def markAsShipped(): Order = {
     copy(status = OrderStatus.Shipped)
   }
-
 }
